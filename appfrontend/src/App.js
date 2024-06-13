@@ -18,9 +18,16 @@ const App = () => {
   };
   
   const addTask = async () => {
+    if(newTask=='')
+      {
+        alert('Inserisci un valore')
+      }
+    else
+      {
       const response = await axios.post('http://localhost:5000/tasks', { text: newTask });
       setTasks([...tasks, response.data]);
       setNewTask('');
+      }
   };
   
   const deleteTask = async (id) => {
@@ -30,9 +37,16 @@ const App = () => {
   
   const updateTask = async (id) => {
       const response = await axios.put(`http://localhost:5000/tasks/${id}`, { text: editingText });
-      setTasks(tasks.map(task => (task.id === id ? response.data : task)));
-      setEditingTask(null);
-      setEditingText('');
+      if(editingText=='')
+        {
+          alert('Inserisci un valore')
+        }
+      else
+        {  
+          setTasks(tasks.map(task => (task.id === id ? response.data : task)));
+          setEditingTask(null);
+          setEditingText('');
+        }
   };
   
 
