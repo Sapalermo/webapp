@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+  margin: 20px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+input[type="text"] {
+  padding: 5px;
+  font-size: 1em;
+}
