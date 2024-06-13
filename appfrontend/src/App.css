@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   margin: 20px;
+  background-color: hsla(240, 100%, 50%, 0.5)
 }
 
 button {
