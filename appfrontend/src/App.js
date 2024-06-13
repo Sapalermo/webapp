@@ -17,36 +17,41 @@ const App = () => {
     setTasks(response.data);
   };
   
+  //# Funzione per creare una nuova attività
   const addTask = async () => {
+    //#Condizione per non inserire una riga vuota 
     if(newTask=='')
       {
         alert('Inserisci un valore')
       }
     else
       {
-      const response = await axios.post('http://localhost:5000/tasks', { text: newTask });
-      setTasks([...tasks, response.data]);
-      setNewTask('');
+        const response = await axios.post('http://localhost:5000/tasks', { text: newTask });
+        setTasks([...tasks, response.data]);
+        setNewTask('');
       }
   };
   
+  //# Funzione per modificare un'attività
   const deleteTask = async (id) => {
     await axios.delete(`http://localhost:5000/tasks/${id}`);
     setTasks(tasks.filter(task => task.id !== id));
   };
   
+  //# Funzione per eliminare un'attività
   const updateTask = async (id) => {
-      const response = await axios.put(`http://localhost:5000/tasks/${id}`, { text: editingText });
-      if(editingText=='')
-        {
-          alert('Inserisci un valore')
-        }
-      else
-        {  
-          setTasks(tasks.map(task => (task.id === id ? response.data : task)));
-          setEditingTask(null);
-          setEditingText('');
-        }
+    const response = await axios.put(`http://localhost:5000/tasks/${id}`, { text: editingText });
+    //#Condizione per non inserire una riga vuota
+    if(editingText=='')
+      {
+        alert('Inserisci un valore')
+      }
+    else
+      {  
+        setTasks(tasks.map(task => (task.id === id ? response.data : task)));
+        setEditingTask(null);
+        setEditingText('');
+      }
   };
   
 
